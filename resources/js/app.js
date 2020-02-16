@@ -7,6 +7,13 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.EventBus = new Vue();
+
+/**
+ * Import store from my store
+ * It's added by MHS , not included with laravel default package
+ */
+import store from './store';
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,6 +28,7 @@ window.Vue = require('vue');
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('follow-button', require('./components/FollowButton.vue').default);
+Vue.component('count-value', require('./components/CountValue.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,4 +38,5 @@ Vue.component('follow-button', require('./components/FollowButton.vue').default)
 
 const app = new Vue({
     el: '#app',
+    store
 });
