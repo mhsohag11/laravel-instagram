@@ -13,6 +13,19 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * get action come from route Postscontroller@index
+     * $users : get all following users
+     * $posts : get all posts by passing by user ids
+     * return view - posts.view
+     */
+    public function index()
+    {
+        $users = auth()->user()->following->pluck('user_id');
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(1);
+        return view('posts.index', compact('posts'));
+
+    }
     public function create()
     {
         return view('posts.create');
