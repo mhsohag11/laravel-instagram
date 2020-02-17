@@ -16,14 +16,16 @@
                     <a href="/p/create" class="btn-primary btn-sm">Add new post</a>
                 @endcan
             </div>
+
             @if($user->id != auth()->id())
             <follow-button user-id="{{ $user->id }}" following-status="{{ $followingStatus }}"></follow-button>
             @endif
+
             @can('update', $user->profile)
             <a href="/profile/{{$user->id}}/edit" class="btn-primary btn-sm">Edit Profile</a>
             @endcan
 
-            <count-value followers="{{ $user->profile->followers->count() }}" posts="{{ $user->posts->count() }}" following="{{ $user->following->count() }}"></count-value>
+            <count-value followers="{{ $followersCount }}" posts="{{ $postsCount }}" following="{{ $followingCount }}"></count-value>
 
             <div class="user-website font-weight-bold pt-10">
                 {{ $user->profile->title ?? '' }}
