@@ -11,9 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/home', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -28,3 +28,8 @@ Route::post('/p', 'PostsController@store')->name('post.store');
 Route::get('/p/{post}', 'PostsController@show');
 
 Route::post('/follow/{user}', 'FollowsController@store');
+
+
+Route::get('/mail', function (){
+    return new \App\Mail\NewUserWelcomeMail();
+});
