@@ -26,11 +26,18 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));
 
     }
+
+    /**
+     * view post create page
+     */
     public function create()
     {
         return view('posts.create');
     }
 
+    /**
+     * When click Add new post button
+     */
     public function store()
     {
         $data = request()->validate([
@@ -51,6 +58,11 @@ class PostsController extends Controller
 
     }
 
+    /**
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Showing single post
+     */
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));

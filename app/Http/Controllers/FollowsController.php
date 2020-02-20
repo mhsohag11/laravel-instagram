@@ -10,13 +10,16 @@ class FollowsController extends Controller
     {
         $this->middleware('auth');
     }
+
+    /**
+     * When click on follow button then action will start from here => post method  apply on route file
+     * on user model > following > hasmanyprofile(profile)
+     * @param User $user
+     * @return mixed
+     */
     public function store(User $user)
     {
         return auth()->user()->following()->toggle($user->profile);
     }
 
-    public function show(User $user)
-    {
-        return $user->following->count();
-    }
 }
